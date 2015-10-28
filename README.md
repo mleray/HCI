@@ -1,2 +1,2 @@
 # Papricash
-Money handling application
+Money-management application
