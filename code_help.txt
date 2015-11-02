@@ -1,0 +1,1 @@
+- Use Windows.Foundation.Metadata.ApiInformation APIs to write adaptive code across different target devices
