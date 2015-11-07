@@ -15,14 +15,13 @@
             <TextBlock x:Name="you_are_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="You are in the :" FontSize="30" />
         </RelativePanel>
         <RelativePanel x:Name="main_panel" Margin="50,200,50,80">
-            <AppBarButton x:Name="history_button" BorderBrush="Black" HorizontalAlignment="Left" Icon="Clock" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="History" Width="150" Height="100" FontSize="21.333"/>
-            <AppBarButton x:Name="setting_button" BorderBrush="Black" HorizontalAlignment="Left" Icon="Setting" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="Settings" Width="150" Height="100" FontSize="21.333"/>
-            <AppBarButton x:Name="add_button" BorderBrush="Black" Icon="Add" Label="Add spending&#xD;&#xA;&#xD;&#xA;" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="150" Height="100" FontSize="21.333" BorderThickness="0"/>
+            <AppBarButton x:Name="history_button" HorizontalAlignment="Left" Icon="Clock" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="History" Width="150" Height="100" Click="history_button_Click">
+            </AppBarButton>
+            <AppBarButton x:Name="setting_button" HorizontalAlignment="Left" Icon="Setting" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="Settings" Width="150" Height="100" Click="settings_button_click"/>
+            <AppBarButton x:Name="add_button" Icon="Add" Label="Add spending" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="150" Height="100" Click="add_button_click"/>
         </RelativePanel>
-        <RelativePanel x:Name="green_panel" Margin="400,130,400,470">
+        <RelativePanel x:Name="status_panel" Margin="400,130,400,470">
             <TextBlock x:Name="green_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="GREEN" Visibility="Visible" FontWeight="Bold" FontSize="30" Foreground="#FF15B12B" />
-        </RelativePanel>
-        <RelativePanel x:Name="red_panel" Margin="400,130,400,470">
             <TextBlock x:Name="red_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="RED" Visibility="Collapsed" FontWeight="Bold" FontSize="30" Foreground="#FFE52606" />
         </RelativePanel>
     </Grid>

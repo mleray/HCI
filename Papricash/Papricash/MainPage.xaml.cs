@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,22 @@ namespace Papricash
         public MainPage()
         {
             this.InitializeComponent();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private void history_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(History));
+        }
+
+        private void add_button_click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Add));
+        }
+
+        private void settings_button_click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Settings));
         }
     }
 }
