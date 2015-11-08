@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -103,6 +104,29 @@ namespace Papricash
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Black);
+        }
+
+        private void amount_changed(object sender, TextChangedEventArgs e)
+        {
+            add_button.Visibility = Visibility.Visible;
+        }
+
+        private void add_click(object sender, RoutedEventArgs e)
+        {
+            if (amount_textBox.Text == "") {
+                amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
+                you_must.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void comment_textBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (comment_textBox.Text == "Optional comment") comment_textBox.Text = "";
+        }
+
+        private void comment_textBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (comment_textBox.Text == "") comment_textBox.Text = "Optional comment";
         }
     }
 }

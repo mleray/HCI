@@ -14,10 +14,18 @@
             </TextBlock>
         </RelativePanel>
         <RelativePanel x:Name="add_panel" Margin="50,250,50,60">
-            <AppBarButton x:Name="add_button" Icon="Add" Label="Add spending" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="150" Height="100"/>
-            <DatePicker HorizontalAlignment="Left" Height="100" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="250"/>
+            <DatePicker x:Name ="dp" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="empty"/>
+            <Button x:Name="add_button" Content="Add spending" Height="60" Width="120" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Visibility="Collapsed" Click="add_click"/>
+            <TextBox x:Name="comment_textBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Height="40" TextWrapping="Wrap" Text="Optional comment" FontStyle="Italic" Width="200" TextAlignment="Right" GotFocus="comment_textBox_GotFocus" LostFocus="comment_textBox_LostFocus"/>
+            <TextBox x:Name="amount_textBox" FontSize="25" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="comment_textBox" Height="40" TextWrapping="Wrap" Width="200" TextChanged="amount_changed" TextAlignment="Right"/>
+            <TextBlock x:Name="you_must" FontStyle="Italic" RelativePanel.Above="amount_textBox" FontSize="20" TextAlignment="Left" Visibility="Collapsed" RelativePanel.AlignLeftWithPanel="True" Text="You must enter a value !" Foreground="#FFE21818"/>
+            <TextBlock x:Name="category" RelativePanel.AlignTopWithPanel="True" FontSize="20" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" Text="Please choose a category above"/>
+            <TextBlock x:Name="define_spend" FontSize="20" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="category" Text="And then define your spending :"/>
+            <TextBlock x:Name="currency" FontSize="30" TextAlignment="Left" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" €"/>
+            <TextBlock x:Name="date" FontSize="20" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="dp" Text="Also pick a date :"/>
+            <TextBlock x:Name="empty" Height="50" Width="100" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
         </RelativePanel>
-        <RelativePanel x:Name="cat_panel" Margin="162,95,162,390">
+        <RelativePanel x:Name="cat_panel" Margin="162,95,162,390" >
             <Button Content="Cat1" Width="100" Height="100" x:Name="cat1" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FFE54141" Click="cat1_click"></Button>
             <Button Content="Cat1" Width="100" Height="100" x:Name="cat2" RelativePanel.RightOf="cat1" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FF30BE15" Click="cat2_click"></Button>
             <Button Content="Cat1" Width="100" Height="100" x:Name="cat3" RelativePanel.RightOf="cat2" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FFFCA911" Click="cat3_click"></Button>
