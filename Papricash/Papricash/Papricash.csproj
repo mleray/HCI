@@ -99,8 +99,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add.xaml.cs">
-      <DependentUpon>Add.xaml</DependentUpon>
+    <Compile Include="Add_spend.xaml.cs">
+      <DependentUpon>Add_spend.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -137,7 +137,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Add.xaml">
+    <Page Include="Add_spend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

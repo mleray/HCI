@@ -8,14 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel x:Name="main_panel" Margin="100,150,350,80">
-            <ListBox x:Name="list_of_spendings" Width="550" Height="350" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-        </RelativePanel>
-        <RelativePanel x:Name="buttons_panel" Margin="750,250,100,100">
+        <RelativePanel x:Name="buttons_panel" Margin="750,250,100,100" Grid.Row="1">
             <AppBarButton x:Name="delete_button" Visibility="Collapsed" Width="150" Height="100" Icon="Delete" Label="Delete" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
             <AppBarButton x:Name="modify_button" Visibility="Collapsed" Width="150" Height="100" Icon="Edit" Label="Modify" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
         </RelativePanel>
-        <RelativePanel x:Name="title_panel" Margin="200,20,200,550">
+        <RelativePanel x:Name="title_panel" Margin="200,20,200,550" Grid.Row="0">
             <TextBlock x:Name="title_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="History" FontSize="40"/>
         </RelativePanel>
     </Grid>

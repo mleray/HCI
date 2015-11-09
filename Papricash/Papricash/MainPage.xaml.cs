@@ -36,7 +36,7 @@ namespace Papricash
 
         private void add_button_click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Add));
+            this.Frame.Navigate(typeof(Add_spend));
         }
 
         private void settings_button_click(object sender, RoutedEventArgs e)

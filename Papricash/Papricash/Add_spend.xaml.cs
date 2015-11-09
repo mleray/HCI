@@ -23,9 +23,9 @@ namespace Papricash
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class Add : Page
+    public sealed partial class Add_spend : Page
     {
-        public Add()
+        public Add_spend()
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
@@ -113,7 +113,8 @@ namespace Papricash
 
         private void add_click(object sender, RoutedEventArgs e)
         {
-            if (amount_textBox.Text == "") {
+            if (amount_textBox.Text == "")
+            {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
             }
