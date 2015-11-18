@@ -20,9 +20,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Papricash
 {
-    /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
-    /// </summary>
     public sealed partial class Add_spend : Page
     {
         public Add_spend()
