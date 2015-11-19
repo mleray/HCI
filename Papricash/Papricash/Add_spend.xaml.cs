@@ -22,9 +22,26 @@ namespace Papricash
 {
     public sealed partial class Add_spend : Page
     {
+
+        private Spending spend;
+
+        internal Spending Spend
+        {
+            get
+            {
+                return spend;
+            }
+
+            set
+            {
+                spend = value;
+            }
+        }
+
         public Add_spend()
         {
             this.InitializeComponent();
+            spend = new Spending();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
@@ -41,6 +58,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            spend.cat = 1;
         }
         private void cat2_click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +69,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            spend.cat = 2;
         }
         private void cat3_click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +80,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            spend.cat = 3;
         }
         private void cat4_click(object sender, RoutedEventArgs e)
         {
@@ -71,6 +91,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            spend.cat = 4;
         }
         private void cat5_click(object sender, RoutedEventArgs e)
         {
@@ -81,6 +102,7 @@ namespace Papricash
             cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            spend.cat = 5;
         }
         private void cat6_click(object sender, RoutedEventArgs e)
         {
@@ -91,6 +113,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+            spend.cat = 6;
         }
         private void cat7_click(object sender, RoutedEventArgs e)
         {
@@ -101,6 +124,7 @@ namespace Papricash
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Black);
+            spend.cat = 7;
         }
 
         private void amount_changed(object sender, TextChangedEventArgs e)
@@ -110,10 +134,27 @@ namespace Papricash
 
         private void add_click(object sender, RoutedEventArgs e)
         {
+            int a, c;
+            string com;
             if (amount_textBox.Text == "")
             {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
+            } else if (spend.cat == 0)
+            {
+                you_must_cat.Visibility = Visibility.Visible;
+            } else if (comment_textBox.Text == "Optional comment")
+            {
+                a = Convert.ToInt32(amount_textBox.Text);
+                c = spend.cat;
+                spend = new Spending(c, a);
+            }
+            else
+            {
+                a = Convert.ToInt32(amount_textBox.Text);
+                c = spend.cat;
+                com = comment_textBox.Text;
+                spend = new Spending(c, a, com);
             }
         }
 

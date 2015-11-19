@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Data.Entity;
 
 namespace Papricash
 {
@@ -33,6 +34,11 @@ namespace Papricash
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using (var db = new SpendContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>

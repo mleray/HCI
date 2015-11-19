@@ -4,52 +4,56 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.Entity;
 
 namespace Papricash
 {
     class Spending
     {
-        private int cat;
-        private float amount;
-        private string comment;
+        public int id { get; set; }
+        public int cat { get; set; }
+        public int amount { get; set; }
+        public string comment { get; set; }
+        public DateTime date { get; set; }
 
-        public int Cat
+        public Spending()
         {
-            get
-            {
-                return cat;
-            }
-
-            set
-            {
-                cat = value;
-            }
+            cat = 0;
+            amount = 0;
+            comment = "";
+            date = DateTime.Today;
         }
 
-        public float Amount
+        public Spending(int c, int a)
         {
-            get
-            {
-                return amount;
-            }
-
-            set
-            {
-                amount = value;
-            }
+            cat = c;
+            amount = a;
+            comment = "";
+            date = DateTime.Today;
         }
 
-        public string Comment
+        public Spending(int c, int a, string com)
         {
-            get
-            {
-                return comment;
-            }
+            cat = c;
+            amount = a;
+            comment = com;
+            date = DateTime.Today;
+        }
 
-            set
-            {
-                comment = value;
-            }
+        public Spending(int c, int a, DateTime d)
+        {
+            cat = c;
+            amount = a;
+            comment = "";
+            date = d;
+        }
+
+        public Spending(int c, int a, string com, DateTime d)
+        {
+            cat = c;
+            amount = a;
+            comment = com;
+            date = d;
         }
     }
 }
