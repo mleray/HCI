@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,26 +23,12 @@ namespace Papricash
 {
     public sealed partial class Add_spend : Page
     {
-
-        private Spending spend;
-
-        internal Spending Spend
-        {
-            get
-            {
-                return spend;
-            }
-
-            set
-            {
-                spend = value;
-            }
-        }
+        private int currentCat { get; set; }
 
         public Add_spend()
         {
             this.InitializeComponent();
-            spend = new Spending();
+            currentCat = 0;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
@@ -58,7 +45,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            spend.cat = 1;
+            currentCat = 1;
         }
         private void cat2_click(object sender, RoutedEventArgs e)
         {
@@ -69,7 +56,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            spend.cat = 2;
+            currentCat = 2;
         }
         private void cat3_click(object sender, RoutedEventArgs e)
         {
@@ -80,7 +67,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            spend.cat = 3;
+            currentCat = 3;
         }
         private void cat4_click(object sender, RoutedEventArgs e)
         {
@@ -91,7 +78,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            spend.cat = 4;
+            currentCat = 4;
         }
         private void cat5_click(object sender, RoutedEventArgs e)
         {
@@ -102,7 +89,7 @@ namespace Papricash
             cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            spend.cat = 5;
+            currentCat = 5;
         }
         private void cat6_click(object sender, RoutedEventArgs e)
         {
@@ -113,7 +100,7 @@ namespace Papricash
             cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            spend.cat = 6;
+            currentCat = 6;
         }
         private void cat7_click(object sender, RoutedEventArgs e)
         {
@@ -124,7 +111,7 @@ namespace Papricash
             cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
             cat7.BorderBrush = new SolidColorBrush(Colors.Black);
-            spend.cat = 7;
+            currentCat = 7;
         }
 
         private void amount_changed(object sender, TextChangedEventArgs e)
@@ -134,27 +121,29 @@ namespace Papricash
 
         private void add_click(object sender, RoutedEventArgs e)
         {
-            int a, c;
+            int a;
             string com;
             if (amount_textBox.Text == "")
             {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
-            } else if (spend.cat == 0)
+            } else if (currentCat == 0)
             {
                 you_must_cat.Visibility = Visibility.Visible;
             } else if (comment_textBox.Text == "Optional comment")
             {
                 a = Convert.ToInt32(amount_textBox.Text);
-                c = spend.cat;
-                spend = new Spending(c, a);
+                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = this.currentCat, Date = dp.Date });
+                Debug.WriteLine(MainPage.path);
+                Frame.Navigate(typeof(MainPage));
             }
             else
             {
                 a = Convert.ToInt32(amount_textBox.Text);
-                c = spend.cat;
                 com = comment_textBox.Text;
-                spend = new Spending(c, a, com);
+                var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = this.currentCat, Date = dp.Date });
+                Debug.WriteLine(MainPage.path);
+                Frame.Navigate(typeof(MainPage));
             }
         }
 

@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="Show spendings" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Show_click"/>
         <RelativePanel x:Name="buttons_panel" Margin="750,250,100,100" Grid.Row="1">
             <AppBarButton x:Name="delete_button" Visibility="Collapsed" Width="150" Height="100" Icon="Delete" Label="Delete" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
             <AppBarButton x:Name="modify_button" Visibility="Collapsed" Width="150" Height="100" Icon="Edit" Label="Modify" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>

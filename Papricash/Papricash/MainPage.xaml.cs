@@ -23,10 +23,16 @@ namespace Papricash
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static string path;
+        public static SQLite.Net.SQLiteConnection conn;
+
         public MainPage()
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db_spend");
+            conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+            conn.CreateTable<Spending>();
         }
 
         private void history_button_Click(object sender, RoutedEventArgs e)

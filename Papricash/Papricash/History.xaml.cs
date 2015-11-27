@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -31,6 +32,17 @@ namespace Papricash
             {
                 this.Frame.Navigate(typeof(MainPage));
             };
+        }
+
+        private void Show_click(object sender, RoutedEventArgs e)
+        {
+            var show = MainPage.conn.Table<Spending>();
+            string result = String.Empty;
+            foreach (var item in show)
+                {
+                    result = item.ToString();
+                    Debug.WriteLine(result);
+                }; 
         }
     }
 }
