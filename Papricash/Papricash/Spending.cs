@@ -16,19 +16,18 @@ namespace Papricash
         public int Cat { get; set; }
         public int Amount { get; set; }
         public string Comment { get; set; }
-        public DateTimeOffset Date { get; set; }
+        public DateTime Date { get; set; }
         
         public override string ToString()
         {
             string result = String.Empty;
-            result += "Spending number: " + Id + "\n";
-            result += "Category: " + Cat + "\n";
+            result += "Date: " + Date.ToString() + "\n";
             result += "Amount: " + Amount + "\n";
+            result += "Category: " + Cat + "\n";
             if (Comment != String.Empty)
             {
                 result += "Comment: " + Comment + "\n";
             }
-            result += "Date: " + Date.ToString() + "\n";
             return result;
         }
     }

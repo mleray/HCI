@@ -24,9 +24,12 @@ namespace Papricash
     /// </summary>
     public sealed partial class History : Page
     {
+        List<Spending> ls;
+
         public History()
         {
             this.InitializeComponent();
+            addDataToList();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
@@ -43,6 +46,41 @@ namespace Papricash
                     result = item.ToString();
                     Debug.WriteLine(result);
                 }; 
+        }
+
+        private void addDataToList()
+        {
+            ls = new List<Spending>();
+            var query = MainPage.conn.Query<Spending>("Select * from Spending order by Date DESC");
+            foreach (Spending s in query)
+            {
+                ls.Add(s);
+            }
+            listSpend.ItemsSource = ls;
+        }
+
+        private void listSpend_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            delete_button.Visibility = Visibility.Visible;
+            modify_button.Visibility = Visibility.Visible;
+        }
+
+        private void delete_button_Click(object sender, RoutedEventArgs e)
+        {
+            Object o = listSpend.SelectedValue;
+            Spending s = (Spending)o;
+            var query = MainPage.conn.Query<Spending>("Delete from Spending where Id = ?", s.Id);
+            Debug.WriteLine("Item successfully deleted");
+            addDataToList();
+        }
+
+        private void modify_button_Click(object sender, RoutedEventArgs e)
+        {
+            Object o = listSpend.SelectedValue;
+            Spending s = (Spending)o;
+            var query = MainPage.conn.Query<Spending>("Delete from Spending where Id = ?", s.Id);
+            Debug.WriteLine("Item successfully deleted");
+            this.Frame.Navigate(typeof(Add_spend), Add_spend.spend = s);
         }
     }
 }

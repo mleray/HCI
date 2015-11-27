@@ -4,25 +4,21 @@
     xmlns:local="using:Papricash"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Controls="using:Callisto.Controls"
     x:Class="Papricash.MainPage"
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel x:Name="title_panel" Margin="200,20,200,550">
-        <TextBlock x:Name="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="Welcome to Papricash" FontSize="40" />
+        <RelativePanel x:Name="title_panel" Margin="200,20,200,480">
+        <TextBlock x:Name="green_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="you_are_text" Text="GREEN" Visibility="Visible" FontWeight="Bold" FontSize="30" Foreground="#FF15B12B" />
+        <TextBlock x:Name="red_text" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="RED" Visibility="Collapsed" RelativePanel.Below="you_are_text" FontWeight="Bold" FontSize="30" Foreground="#FFE52606" />
+        <TextBlock x:Name="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" Text="Welcome to Papricash" FontSize="40" />
+        <TextBlock x:Name="you_are_text" RelativePanel.Below="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="You are in the :" FontSize="30" />
+        <Image x:Name="logo" RelativePanel.AlignLeftWithPanel="True" Height="70" RelativePanel.AlignTopWithPanel="True" Width="70" Source="./Resources/papricash.jpg"/>
         </RelativePanel>
-        <RelativePanel x:Name="you_are_panel" Margin="300,90,300,510">
-            <TextBlock x:Name="you_are_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="You are in the :" FontSize="30" />
-        </RelativePanel>
-        <RelativePanel x:Name="main_panel" Margin="50,200,50,80">
-            <AppBarButton x:Name="history_button" HorizontalAlignment="Left" Icon="Clock" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="History" Width="150" Height="100" Click="history_button_Click">
+        <RelativePanel x:Name="main_panel" Margin="80,250,80,80">
+            <AppBarButton x:Name="history_button" HorizontalAlignment="Left" Icon="Clock" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="History" Width="150" Height="100" Click="history_button_Click" Background="#FFFAAB00">
             </AppBarButton>
-            <AppBarButton x:Name="setting_button" HorizontalAlignment="Left" Icon="Setting" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="Settings" Width="150" Height="100" Click="settings_button_click"/>
-            <AppBarButton x:Name="add_button" Icon="Add" Label="Add spending" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="150" Height="100" Click="add_button_click"/>
-        </RelativePanel>
-        <RelativePanel x:Name="status_panel" Margin="400,130,400,470">
-            <TextBlock x:Name="green_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="GREEN" Visibility="Visible" FontWeight="Bold" FontSize="30" Foreground="#FF15B12B" />
-            <TextBlock x:Name="red_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="RED" Visibility="Collapsed" FontWeight="Bold" FontSize="30" Foreground="#FFE52606" />
+            <AppBarButton x:Name="setting_button" HorizontalAlignment="Left" Icon="Setting" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="Settings" Width="150" Height="100" Click="settings_button_click" Background="#FFDC39F1"/>
+            <AppBarButton x:Name="add_button" Icon="Add" Label="Add spending" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="150" Height="100" Click="add_button_click" Background="#FFED0973"/>
         </RelativePanel>
     </Grid>
 </Page>

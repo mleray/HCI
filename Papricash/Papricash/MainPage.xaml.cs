@@ -25,6 +25,7 @@ namespace Papricash
     {
         public static string path;
         public static SQLite.Net.SQLiteConnection conn;
+        public static int threshold;
 
         public MainPage()
         {

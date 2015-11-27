@@ -8,10 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Show spendings" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Show_click"/>
-        <RelativePanel x:Name="buttons_panel" Margin="750,250,100,100" Grid.Row="1">
-            <AppBarButton x:Name="delete_button" Visibility="Collapsed" Width="150" Height="100" Icon="Delete" Label="Delete" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True"/>
-            <AppBarButton x:Name="modify_button" Visibility="Collapsed" Width="150" Height="100" Icon="Edit" Label="Modify" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
+        <RelativePanel x:Name="buttons_panel" Margin="120,150,120,60">
+            <AppBarButton x:Name="delete_button" Width="120" Visibility="Collapsed" Height="90" Icon="Delete" Label="Delete" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignRightWith="listSpend" Background="#FFEE370F" Click="delete_button_Click"/>
+            <AppBarButton x:Name="modify_button" Width="120" Visibility="Collapsed" Height="90" Icon="Edit" Label="Modify" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignRightWith="listSpend" RelativePanel.Below="delete_button" Background="#FF0EB6DF" Click="modify_button_Click"/>
+            <ListView x:Name="listSpend" HorizontalAlignment="Left" Height="400" Width="500" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" SelectionChanged="listSpend_SelectionChanged"/>
         </RelativePanel>
         <RelativePanel x:Name="title_panel" Margin="200,20,200,550" Grid.Row="0">
             <TextBlock x:Name="title_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="History" FontSize="40"/>

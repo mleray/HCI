@@ -8,30 +8,44 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel x:Name="title_panel" Margin="200,20,200,550" Grid.Row="0">
-            <TextBlock x:Name="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" FontSize="40" TextAlignment="Center" >
+        <RelativePanel x:Name="add_panel" Margin="60,20,60,70">
+            <TextBlock x:Name="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="40" TextAlignment="Center" >
               <Run Text="Add spending"/>
             </TextBlock>
-        </RelativePanel>
-        <RelativePanel x:Name="add_panel" Margin="50,250,50,60" Grid.Row="1">
-            <TextBlock x:Name="you_must_cat" FontStyle="Italic" RelativePanel.AlignTopWithPanel="True" FontSize="20" TextAlignment="Left" Visibility="Collapsed" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="You must pick a category !" Foreground="#FFE21818"/>
+            <Canvas x:Name="empty2" Height="50" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="welcome_text"/>
+            <TextBlock x:Name="you_must_cat" FontStyle="Italic" Visibility="Collapsed" RelativePanel.Below="cat_panel" FontSize="20" TextAlignment="Left" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="You must pick a category!" Foreground="#FFE21818"/>
             <DatePicker x:Name ="dp" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="empty"/>
-            <Button x:Name="add_button" Content="Add spending" Height="60" Width="120" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Visibility="Collapsed" Click="add_click"/>
+            <Button x:Name="add_button" Visibility="Collapsed" Content="Add spending" Height="70" Width="130" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Click="add_click"/>
             <TextBox x:Name="comment_textBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Height="40" TextWrapping="Wrap" Text="Optional comment" FontStyle="Italic" Width="200" TextAlignment="Right" GotFocus="comment_textBox_GotFocus" LostFocus="comment_textBox_LostFocus"/>
             <TextBox x:Name="amount_textBox" FontSize="25" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="comment_textBox" Height="40" TextWrapping="Wrap" Width="200" TextChanged="amount_changed" TextAlignment="Right"/>
-            <TextBlock x:Name="you_must" FontStyle="Italic" RelativePanel.Above="amount_textBox" FontSize="20" TextAlignment="Left" Visibility="Collapsed" RelativePanel.AlignLeftWithPanel="True" Text="You must enter a value !" Foreground="#FFE21818"/>
-            <TextBlock x:Name="currency" FontSize="30" TextAlignment="Left" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" €"/>
-            <TextBlock x:Name="date" FontSize="20" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="dp" Text="Also pick a date :"/>
+            <TextBlock x:Name="you_must" FontStyle="Italic" RelativePanel.Above="amount_textBox" FontSize="20" TextAlignment="Left" Visibility="Collapsed" RelativePanel.AlignLeftWithPanel="True" Text="You must enter a value!" Foreground="#FFE21818"/>
+            <TextBlock x:Name="euro" FontSize="30" TextAlignment="Left" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" €"/>
+            <TextBlock x:Name="forint" FontSize="30" TextAlignment="Left" Visibility="Collapsed" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" HUF"/>
+            <TextBlock x:Name="date" FontSize="20" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="dp" Text="Also pick a date:"/>
             <TextBlock x:Name="empty" Height="50" Width="100" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
-        </RelativePanel>
-        <RelativePanel x:Name="cat_panel" Margin="162,95,162,390" >
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat1" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FFE54141" Click="cat1_click"></Button>
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat2" RelativePanel.RightOf="cat1" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FF30BE15" Click="cat2_click"></Button>
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat3" RelativePanel.RightOf="cat2" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FFFCA911" Click="cat3_click"></Button>
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat4" RelativePanel.RightOf="cat3" RelativePanel.AlignVerticalCenterWithPanel="True" Background="DeepSkyBlue" Click="cat4_click"></Button>
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat5" RelativePanel.RightOf="cat4" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FFF9D206" Click="cat5_click"></Button>
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat6" RelativePanel.RightOf="cat5" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FFFF00B2" Click="cat6_click"></Button>
-            <Button Content="Cat1" Width="100" Height="100" x:Name="cat7" RelativePanel.RightOf="cat6" RelativePanel.AlignVerticalCenterWithPanel="True" Background="#FF9E00FF" Click="cat7_click"></Button>
+            <Canvas x:Name="cat_panel" RelativePanel.Below="empty2" Width="700" Height="100" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat1" Background="#FFE54141" Click="cat1_click"></Button>
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat2" Background="#FF30BE15" Click="cat2_click" Canvas.Left="600"></Button>
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat3" Background="#FFFCA911" Click="cat3_click" Canvas.Left="500"></Button>
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat4" Background="DeepSkyBlue" Click="cat4_click" Canvas.Left="400"></Button>
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat5" Background="#FFF9D206" Click="cat5_click" Canvas.Left="300"></Button>
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat6" Background="#FFFF00B2" Click="cat6_click" Canvas.Left="200"></Button>
+                <Button Content="Cat1" Width="100" Height="100" x:Name="cat7" Background="#FF9E00FF" Click="cat7_click" Canvas.Left="100"></Button>
+            </Canvas>
+        <Canvas x:Name="empty3" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="cat_panel" Width="300" Height="60"/>
+        <Canvas x:Name="keyboard" Width="240" Height="240" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="empty3">
+                <Button x:Name="nb7" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="7" Click="nb7_Click"/>
+                <Button x:Name="nb8" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="8" Canvas.Left="80" Click="nb8_Click"/>
+                <Button x:Name="nb9" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="9" Canvas.Left="160" Click="nb9_Click"/>
+                <Button x:Name="nb4" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="4" Canvas.Top="60" Click="nb4_Click"/>
+                <Button x:Name="nb5" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="5" Canvas.Left="80" Canvas.Top="60" Click="nb5_Click"/>
+                <Button x:Name="nb6" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="6" Canvas.Left="160" Canvas.Top="60" Click="nb6_Click"/>
+                <Button x:Name="nb1" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="1" Canvas.Top="120" Click="nb1_Click"/>
+                <Button x:Name="nb2" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="2" Canvas.Left="80" Canvas.Top="120" Click="nb2_Click"/>
+                <Button x:Name="nb3" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="3" Canvas.Left="160" Canvas.Top="120" Click="nb3_Click"/>
+                <Button x:Name="nb0" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="0" Canvas.Top="180" Click="nb0_Click"/>
+                <Button x:Name="cancel" BorderBrush="Black" BorderThickness="1" Height="60" Width="160" Content="Cancel" Canvas.Left="80" Canvas.Top="180" Click="cancel_Click"/>
+            </Canvas>
         </RelativePanel>
     </Grid>
 </Page>

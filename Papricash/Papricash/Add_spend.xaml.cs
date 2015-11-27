@@ -24,11 +24,23 @@ namespace Papricash
     public sealed partial class Add_spend : Page
     {
         private int currentCat { get; set; }
+        public static Spending spend;
 
         public Add_spend()
         {
             this.InitializeComponent();
             currentCat = 0;
+            if (spend != null)
+            {
+                clickCat(spend.Cat);
+                amount_textBox.Text += spend.Amount;
+                if (spend.Comment != "")
+                {
+                    comment_textBox.Text = spend.Comment;
+                }
+                dp.Date = spend.Date;
+                add_button.Visibility = Visibility.Visible;
+            }
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
@@ -36,82 +48,119 @@ namespace Papricash
             };
         }
 
+        private void clickCat(int c)
+        {
+            if (c == 1)
+            {
+                cat1.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat1.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 1;
+            } else if (c == 2)
+            {
+                cat2.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat2.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 2;
+            }
+            else if (c == 3)
+            {
+                cat3.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 3;
+            } else if (c == 4)
+            {
+                cat4.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 4;
+            } else if (c == 5)
+            {
+                cat5.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 5;
+            } else if (c == 6)
+            {
+                cat6.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 6;
+            } else if (c == 7)
+            {
+                cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                cat7.BorderBrush = new SolidColorBrush(Colors.Black);
+                cat7.BorderThickness = new Thickness(3, 3, 3, 3);
+                currentCat = 7;
+            } else
+            {
+                Debug.WriteLine("This category does not exist");
+            }
+        }
+
         private void cat1_click(object sender, RoutedEventArgs e)
         {
-            cat1.BorderBrush = new SolidColorBrush(Colors.Black);
-            cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            currentCat = 1;
+            clickCat(1);
         }
         private void cat2_click(object sender, RoutedEventArgs e)
         {
-            cat2.BorderBrush = new SolidColorBrush(Colors.Black);
-            cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            currentCat = 2;
+            clickCat(2);
         }
         private void cat3_click(object sender, RoutedEventArgs e)
         {
-            cat3.BorderBrush = new SolidColorBrush(Colors.Black);
-            cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            currentCat = 3;
+            clickCat(3);
         }
         private void cat4_click(object sender, RoutedEventArgs e)
         {
-            cat4.BorderBrush = new SolidColorBrush(Colors.Black);
-            cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            currentCat = 4;
+            clickCat(4);
         }
         private void cat5_click(object sender, RoutedEventArgs e)
         {
-            cat5.BorderBrush = new SolidColorBrush(Colors.Black);
-            cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            currentCat = 5;
+            clickCat(5);
         }
         private void cat6_click(object sender, RoutedEventArgs e)
         {
-            cat6.BorderBrush = new SolidColorBrush(Colors.Black);
-            cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            currentCat = 6;
+            clickCat(6);
         }
         private void cat7_click(object sender, RoutedEventArgs e)
         {
-            cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat4.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat5.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
-            cat7.BorderBrush = new SolidColorBrush(Colors.Black);
-            currentCat = 7;
+            clickCat(7);
         }
 
         private void amount_changed(object sender, TextChangedEventArgs e)
@@ -127,13 +176,15 @@ namespace Papricash
             {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
-            } else if (currentCat == 0)
+            }
+            else if (currentCat == 0)
             {
                 you_must_cat.Visibility = Visibility.Visible;
-            } else if (comment_textBox.Text == "Optional comment")
+            }
+            else if (comment_textBox.Text == "Optional comment")
             {
                 a = Convert.ToInt32(amount_textBox.Text);
-                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = this.currentCat, Date = dp.Date });
+                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.DateTime });
                 Debug.WriteLine(MainPage.path);
                 Frame.Navigate(typeof(MainPage));
             }
@@ -141,7 +192,7 @@ namespace Papricash
             {
                 a = Convert.ToInt32(amount_textBox.Text);
                 com = comment_textBox.Text;
-                var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = this.currentCat, Date = dp.Date });
+                var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = currentCat, Date = dp.Date.Date });
                 Debug.WriteLine(MainPage.path);
                 Frame.Navigate(typeof(MainPage));
             }
@@ -155,6 +206,61 @@ namespace Papricash
         private void comment_textBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (comment_textBox.Text == "") comment_textBox.Text = "Optional comment";
+        }
+
+        private void nb1_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "1";
+        }
+
+        private void nb2_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "2";
+        }
+
+        private void nb7_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "7";
+        }
+
+        private void nb8_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "8";
+        }
+
+        private void nb9_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "9";
+        }
+
+        private void nb4_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "4";
+        }
+
+        private void nb5_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "5";
+        }
+
+        private void nb6_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "6";
+        }
+
+        private void nb3_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "3";
+        }
+
+        private void nb0_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text += "0";
+        }
+
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
+            amount_textBox.Text = "";
         }
     }
 }
