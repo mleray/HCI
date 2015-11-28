@@ -8,6 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <RelativePanel x:Name="main_panel" Margin="60,20,60,80">
+            <TextBlock x:Name="trends_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="40" Text="Trends" TextAlignment="Center"/>
+        </RelativePanel>
     </Grid>
 </Page>

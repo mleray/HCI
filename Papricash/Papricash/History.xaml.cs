@@ -30,11 +30,6 @@ namespace Papricash
         {
             this.InitializeComponent();
             addDataToList();
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
-            {
-                this.Frame.Navigate(typeof(MainPage));
-            };
         }
 
         private void Show_click(object sender, RoutedEventArgs e)
@@ -81,6 +76,11 @@ namespace Papricash
             var query = MainPage.conn.Query<Spending>("Delete from Spending where Id = ?", s.Id);
             Debug.WriteLine("Item successfully deleted");
             this.Frame.Navigate(typeof(Add_spend), Add_spend.spend = s);
+        }
+
+        private void return_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

@@ -41,11 +41,11 @@ namespace Papricash
                 dp.Date = spend.Date;
                 add_button.Visibility = Visibility.Visible;
             }
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
-            {
-                this.Frame.Navigate(typeof(MainPage));
-            };
+        }
+
+        private void return_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
 
         private void clickCat(int c)
