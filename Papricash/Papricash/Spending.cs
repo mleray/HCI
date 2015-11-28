@@ -13,7 +13,7 @@ namespace Papricash
         [PrimaryKey, AutoIncrement]
 
         public int Id { get; set; }
-        public int Cat { get; set; }
+        public string Cat { get; set; }
         public int Amount { get; set; }
         public string Comment { get; set; }
         public DateTime Date { get; set; }

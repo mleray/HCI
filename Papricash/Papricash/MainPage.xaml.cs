@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,14 +27,37 @@ namespace Papricash
     {
         public static string path;
         public static SQLite.Net.SQLiteConnection conn;
+        public static int budget;
         public static int threshold;
         public static int currency;
 
         public MainPage()
         {
             this.InitializeComponent();
-            currency = 1;
-            threshold = 0;
+            if (budget != 0)
+            {
+                if (currency == 1)
+                {
+                    euro.Visibility = Visibility.Visible;
+                    ft.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ft.Visibility = Visibility.Visible;
+                    euro.Visibility = Visibility.Collapsed;
+                }
+                thresh.Text += " " + budget;
+                you_still.Visibility = Visibility.Visible;
+                if (budget <= threshold)
+                {
+                    green_text.Visibility = Visibility.Collapsed;
+                    red_text.Visibility = Visibility.Visible;
+                } else
+                {
+                    red_text.Visibility = Visibility.Collapsed;
+                    green_text.Visibility = Visibility.Visible;
+                }
+                }
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db_spend");
             conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
@@ -56,8 +80,6 @@ namespace Papricash
             var dialog = new ContentDialog()
             {
                 Title = "Settings",
-                //RequestedTheme = ElementTheme.Dark,
-                //FullSizeDesired = true,
                 MaxWidth = this.ActualWidth // Required for Mobile!
             };
 
@@ -83,6 +105,15 @@ namespace Papricash
 
             var text = new TextBlock
             {
+                Text = "Budget:"
+            };
+
+            var budget = new TextBox
+            {
+                Text = ""
+            };
+            var text2 = new TextBlock
+            {
                 Text = "Threshold:"
             };
 
@@ -94,6 +125,8 @@ namespace Papricash
             panel.Children.Add(cbEuro);
             panel.Children.Add(cbFt);
             panel.Children.Add(text);
+            panel.Children.Add(budget);
+            panel.Children.Add(text2);
             panel.Children.Add(threshold);
             dialog.Content = panel;
 
@@ -102,18 +135,22 @@ namespace Papricash
             dialog.PrimaryButtonClick += delegate
             {
                 btn.Content = "Result: OK";
+                MainPage.budget = Convert.ToInt32(budget.Text);
                 MainPage.threshold = Convert.ToInt32(threshold.Text);
                 if (cbEuro.IsChecked == true)
                 {
                     MainPage.currency = 1;
+                    euro.Visibility = Visibility.Visible;
+                    ft.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     MainPage.currency = 0;
+                    ft.Visibility = Visibility.Visible;
+                    euro.Visibility = Visibility.Collapsed;
                 }
                 you_still.Visibility = Visibility.Visible;
-                thresh.Text += " " + threshold.Text;
-                Debug.WriteLine("Threshold: " + MainPage.threshold + " Currency: " + MainPage.currency);
+                thresh.Text += " " + budget.Text;
             };
 
             dialog.SecondaryButtonText = "Cancel";
@@ -124,6 +161,11 @@ namespace Papricash
 
             // Show Dialog
             var result = await dialog.ShowAsync();
+        }
+
+        private void trends_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Trends));
         }
     }
 }

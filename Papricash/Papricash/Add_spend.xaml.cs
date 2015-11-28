@@ -23,13 +23,22 @@ namespace Papricash
 {
     public sealed partial class Add_spend : Page
     {
-        private int currentCat { get; set; }
+        private string currentCat { get; set; }
         public static Spending spend;
 
         public Add_spend()
         {
             this.InitializeComponent();
-            currentCat = 0;
+            currentCat = "";
+            if (MainPage.currency == 1)
+            {
+                euro.Visibility = Visibility.Visible;
+                forint.Visibility = Visibility.Collapsed;
+            } else
+            {
+                forint.Visibility = Visibility.Visible;
+                euro.Visibility = Visibility.Collapsed;
+            }
             if (spend != null)
             {
                 clickCat(spend.Cat);
@@ -40,6 +49,7 @@ namespace Papricash
                 }
                 dp.Date = spend.Date;
                 add_button.Visibility = Visibility.Visible;
+                spend = null;
             }
         }
 
@@ -48,9 +58,9 @@ namespace Papricash
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        private void clickCat(int c)
+        private void clickCat(string c)
         {
-            if (c == 1)
+            if (c == "Party")
             {
                 cat1.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -60,8 +70,8 @@ namespace Papricash
                 cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat1.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 1;
-            } else if (c == 2)
+                currentCat = "Party";
+            } else if (c == "Health")
             {
                 cat2.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -71,9 +81,9 @@ namespace Papricash
                 cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat2.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 2;
+                currentCat = "Health";
             }
-            else if (c == 3)
+            else if (c == "Shopping")
             {
                 cat3.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -83,8 +93,8 @@ namespace Papricash
                 cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat3.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 3;
-            } else if (c == 4)
+                currentCat = "Shopping";
+            } else if (c == "Grocery")
             {
                 cat4.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -94,8 +104,8 @@ namespace Papricash
                 cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat4.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 4;
-            } else if (c == 5)
+                currentCat = "Grocery";
+            } else if (c == "Hobbies")
             {
                 cat5.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -105,8 +115,8 @@ namespace Papricash
                 cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat5.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 5;
-            } else if (c == 6)
+                currentCat = "Hobbies";
+            } else if (c == "Transport")
             {
                 cat6.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -116,8 +126,8 @@ namespace Papricash
                 cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat6.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 6;
-            } else if (c == 7)
+                currentCat = "Transport";
+            } else if (c == "Travel")
             {
                 cat1.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat3.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -127,7 +137,7 @@ namespace Papricash
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat7.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = 7;
+                currentCat = "Travel";
             } else
             {
                 Debug.WriteLine("This category does not exist");
@@ -136,31 +146,31 @@ namespace Papricash
 
         private void cat1_click(object sender, RoutedEventArgs e)
         {
-            clickCat(1);
+            clickCat("Party");
         }
         private void cat2_click(object sender, RoutedEventArgs e)
         {
-            clickCat(2);
+            clickCat("Health");
         }
         private void cat3_click(object sender, RoutedEventArgs e)
         {
-            clickCat(3);
+            clickCat("Shopping");
         }
         private void cat4_click(object sender, RoutedEventArgs e)
         {
-            clickCat(4);
+            clickCat("Grocery");
         }
         private void cat5_click(object sender, RoutedEventArgs e)
         {
-            clickCat(5);
+            clickCat("Hobbies");
         }
         private void cat6_click(object sender, RoutedEventArgs e)
         {
-            clickCat(6);
+            clickCat("Transport");
         }
         private void cat7_click(object sender, RoutedEventArgs e)
         {
-            clickCat(7);
+            clickCat("Travel");
         }
 
         private void amount_changed(object sender, TextChangedEventArgs e)
@@ -177,7 +187,7 @@ namespace Papricash
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
             }
-            else if (currentCat == 0)
+            else if (currentCat == "")
             {
                 you_must_cat.Visibility = Visibility.Visible;
             }
@@ -186,6 +196,7 @@ namespace Papricash
                 a = Convert.ToInt32(amount_textBox.Text);
                 var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.DateTime });
                 Debug.WriteLine(MainPage.path);
+                MainPage.budget -= a;
                 Frame.Navigate(typeof(MainPage));
             }
             else
@@ -194,6 +205,7 @@ namespace Papricash
                 com = comment_textBox.Text;
                 var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = currentCat, Date = dp.Date.Date });
                 Debug.WriteLine(MainPage.path);
+                MainPage.budget -= a;
                 Frame.Navigate(typeof(MainPage));
             }
         }

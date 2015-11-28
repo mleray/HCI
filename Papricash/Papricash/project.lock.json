@@ -15540,7 +15540,8 @@
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "SQLite.Net-PCL >= 3.1.1",
-      "WinRTXamlToolkit.Controls.DataVisualization.UWP >= 1.9.4"
+      "WinRTXamlToolkit.Controls.DataVisualization.UWP >= 1.9.4",
+      "WinRTXamlToolkit.UWP >= 1.9.4"
     ],
     "UAP,Version=v10.0": []
   }

@@ -65,6 +65,7 @@ namespace Papricash
             Object o = listSpend.SelectedValue;
             Spending s = (Spending)o;
             var query = MainPage.conn.Query<Spending>("Delete from Spending where Id = ?", s.Id);
+            MainPage.budget += s.Amount;
             Debug.WriteLine("Item successfully deleted");
             addDataToList();
         }
@@ -75,6 +76,7 @@ namespace Papricash
             Spending s = (Spending)o;
             var query = MainPage.conn.Query<Spending>("Delete from Spending where Id = ?", s.Id);
             Debug.WriteLine("Item successfully deleted");
+            MainPage.budget += s.Amount;
             this.Frame.Navigate(typeof(Add_spend), Add_spend.spend = s);
         }
 
