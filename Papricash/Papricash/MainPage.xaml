@@ -14,14 +14,22 @@
             <TextBlock x:Name="you_are_text" RelativePanel.Below="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="You are in the :" FontSize="30" />
             <Image x:Name="logo" RelativePanel.AlignLeftWithPanel="True" Height="80" RelativePanel.AlignTopWithPanel="True" Width="70" Source="./Resources/papricash.jpg"/>
         </RelativePanel>
-        <RelativePanel x:Name="main_panel" Margin="80,250,80,100">
+        <RelativePanel x:Name="main_panel" Margin="80,200,80,100">
             <Button x:Name="trends_button" RelativePanel.AlignHorizontalCenterWithPanel="True" Background="White" Width="300" Height="300" RelativePanel.AlignVerticalCenterWithPanel="True"  Click="trends_button_Click">
                 <Image Source="./Resources/trends.jpg" Stretch="Fill"/>
             </Button>
-            <AppBarButton x:Name="history_button" HorizontalAlignment="Left" Icon="Clock" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="History" Width="150" Height="100" Click="history_button_Click" Background="#FFFAAB00">
-            </AppBarButton>
-            <AppBarButton x:Name="setting_button" HorizontalAlignment="Left" Icon="Setting" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Label="Settings" Width="150" Height="100" Click="settings_button_click" Background="#FFDC39F1"/>
-            <AppBarButton x:Name="add_button" Icon="Add" Label="Add spending" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="150" Height="100" Click="add_button_click" Background="#FFED0973"/>
+            <TextBlock x:Name="history" Height="30" Width="120" Text="History" RelativePanel.Below="history_button" RelativePanel.AlignLeftWithPanel="True" FontSize="18.667" TextAlignment="Center"/>
+            <TextBlock x:Name="settings" Height="30" Width="120" Text="Settings" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" FontSize="18.667" TextAlignment="Center"/>
+            <TextBlock x:Name="add" Height="30" Width="120" Text="Add spending" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="add_button" FontSize="18.667" TextAlignment="Center"/>
+            <Button x:Name="history_button" HorizontalAlignment="Left" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Width="120" Height="120" Click="history_button_Click" Background="White">
+                <Image Source="./Resources/history.jpg" Stretch="Fill"/>
+            </Button>
+            <Button x:Name="setting_button" HorizontalAlignment="Left" RelativePanel.Above="settings" RelativePanel.AlignLeftWithPanel="True" Width="120" Height="120" Click="settings_button_click" Background="White">
+                <Image Source="./Resources/settings.jpg" Stretch="Fill"/>
+            </Button>
+            <Button x:Name="add_button" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="120" Height="120" Click="add_button_click" Background="White">
+                <Image Source="./Resources/add.jpg" Stretch="Fill"/>
+            </Button>
             <TextBlock x:Name="you_still" Visibility="Collapsed" RelativePanel.AlignBottomWithPanel="true" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="You still have:" FontSize="26.667"/>
             <TextBlock x:Name="thresh" RelativePanel.AlignBottomWithPanel="true" RelativePanel.RightOf="you_still" FontSize="26.667"/>
             <TextBlock x:Name="euro" Visibility="Collapsed" RelativePanel.AlignBottomWithPanel="true" RelativePanel.RightOf="thresh" Text="€" FontSize="26.667" />

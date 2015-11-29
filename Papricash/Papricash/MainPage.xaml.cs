@@ -57,7 +57,7 @@ namespace Papricash
                     red_text.Visibility = Visibility.Collapsed;
                     green_text.Visibility = Visibility.Visible;
                 }
-                }
+            }
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db_spend");
             conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
@@ -134,7 +134,6 @@ namespace Papricash
             dialog.PrimaryButtonText = "OK";
             dialog.PrimaryButtonClick += delegate
             {
-                btn.Content = "Result: OK";
                 MainPage.budget = Convert.ToInt32(budget.Text);
                 MainPage.threshold = Convert.ToInt32(threshold.Text);
                 if (cbEuro.IsChecked == true)
@@ -154,10 +153,7 @@ namespace Papricash
             };
 
             dialog.SecondaryButtonText = "Cancel";
-            dialog.SecondaryButtonClick += delegate
-            {
-                btn.Content = "Result: Cancel";
-            };
+            dialog.SecondaryButtonClick += delegate { };
 
             // Show Dialog
             var result = await dialog.ShowAsync();

@@ -14,8 +14,8 @@
             <Button Height="50" Width="100" Click="return_button_Click">
                 <SymbolIcon Symbol="Back" Height="40" Width="80"/>
             </Button>
-            <Charting:Chart x:Name="chart" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="450" Height="450">
-                <Charting:PieSeries Margin="0" IndependentValuePath="Cat" DependentValuePath="Amount" IsSelectionEnabled="True"/>
+            <Charting:Chart x:Name="pie" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="450" Height="450">
+                <Charting:PieSeries Margin="0" IndependentValuePath="Cat" DependentValuePath="Amount" IsSelectionEnabled="False"/>
             </Charting:Chart>
         </RelativePanel>
     </Grid>

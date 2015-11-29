@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -36,13 +37,45 @@ namespace Papricash
 
         private void addDataToChart()
         {
-            List<Spending> ls = new List<Spending>();
-            var query = MainPage.conn.Query<Spending>("Select * from Spending order by Cat DESC");
+            List<Spending> lsPie = new List<Spending>();
+            string[] tabCat = { "Party", "Health", "Shopping", "Grocery", "Hobbies", "Transport", "Travel" };
+            int[] tabAmount = { 0, 0, 0, 0, 0, 0, 0 };
+            var query = MainPage.conn.Query<Spending>("Select Cat, Date, Amount from Spending order by Date");
             foreach (Spending s in query)
             {
-                ls.Add(new Spending() { Cat = s.Cat, Amount = s.Amount });
+                switch (s.Cat)
+                {
+                    case "Party":
+                        tabAmount[0] += s.Amount;
+                        break;
+                    case "Health":
+                        tabAmount[1] += s.Amount;
+                        break;
+                    case "Shopping":
+                        tabAmount[2] += s.Amount;
+                        break;
+                    case "Grocery":
+                        tabAmount[3] += s.Amount;
+                        break;
+                    case "Hobbies":
+                        tabAmount[4] += s.Amount;
+                        break;
+                    case "Transport":
+                        tabAmount[5] += s.Amount;
+                        break;
+                    case "Travel":
+                        tabAmount[6] += s.Amount;
+                        break;
+                    default:
+                        Debug.WriteLine("Default case");
+                        break;
+                }
             }
-            (chart.Series[0] as PieSeries).ItemsSource = ls;
+            for (int i=0; i < 7; i++)
+            {
+                lsPie.Add(new Spending { Cat = tabCat[i], Amount = tabAmount[i] });
+            }
+            (pie.Series[0] as PieSeries).ItemsSource = lsPie;
         }
     }
 }
