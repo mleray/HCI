@@ -194,9 +194,11 @@ namespace Papricash
             else if (comment_textBox.Text == "Optional comment")
             {
                 a = Convert.ToInt32(amount_textBox.Text);
-                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.DateTime });
-                Debug.WriteLine(MainPage.path);
-                MainPage.budget -= a;
+                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.Date });
+                if (MainPage.budget != 0)
+                {
+                    MainPage.budget -= a;
+                }
                 Frame.Navigate(typeof(MainPage));
             }
             else
@@ -204,8 +206,10 @@ namespace Papricash
                 a = Convert.ToInt32(amount_textBox.Text);
                 com = comment_textBox.Text;
                 var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = currentCat, Date = dp.Date.Date });
-                Debug.WriteLine(MainPage.path);
-                MainPage.budget -= a;
+                if (MainPage.budget != 0)
+                {
+                    MainPage.budget -= a;
+                }
                 Frame.Navigate(typeof(MainPage));
             }
         }

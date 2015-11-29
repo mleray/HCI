@@ -19,7 +19,7 @@
             </Button>
             <Canvas x:Name="empty2" Height="50" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="welcome_text"/>
             <TextBlock x:Name="you_must_cat" FontStyle="Italic" Visibility="Collapsed" RelativePanel.Below="cat_panel" FontSize="20" TextAlignment="Left" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="You must pick a category!" Foreground="#FFE21818"/>
-            <DatePicker x:Name ="dp" Language="en-UK" RelativePanel.RightOf="emptyLeft" RelativePanel.Above="empty"/>
+            <DatePicker x:Name ="dp" Language="en-US" RelativePanel.RightOf="emptyLeft" RelativePanel.Above="empty"/>
             <Button x:Name="add_button" RelativePanel.LeftOf="emptyRight" Visibility="Collapsed" Content="Add spending" Height="70" Width="130" RelativePanel.AlignBottomWithPanel="True" Click="add_click"/>
             <TextBox x:Name="comment_textBox" RelativePanel.RightOf="emptyLeft" RelativePanel.AlignVerticalCenterWithPanel="True" Height="40" TextWrapping="Wrap" Text="Optional comment" FontStyle="Italic" Width="200" TextAlignment="Right" GotFocus="comment_textBox_GotFocus" LostFocus="comment_textBox_LostFocus"/>
             <TextBox x:Name="amount_textBox" FontSize="25" RelativePanel.RightOf="emptyLeft" RelativePanel.Above="comment_textBox" Height="40" TextWrapping="Wrap" Width="200" TextChanged="amount_changed" TextAlignment="Right"/>
