@@ -38,7 +38,7 @@ namespace Papricash
         private void addDataToChart()
         {
             List<Spending> lsPie = new List<Spending>();
-            string[] tabCat = { "Party", "Health", "Shopping", "Grocery", "Hobbies", "Transport", "Travel" };
+            string[] tabCat = { "Parties", "Health", "Shopping", "Grocery", "Hobbies", "Transport", "Travel" };
             int[] tabAmount = { 0, 0, 0, 0, 0, 0, 0 };
             var query = MainPage.conn.Query<Spending>("SELECT Cat, Date, Amount FROM Spending");
             foreach (Spending s in query)
@@ -47,7 +47,7 @@ namespace Papricash
                 {
                     switch (s.Cat)
                     {
-                        case "Party":
+                        case "Parties":
                             tabAmount[0] += s.Amount;
                             break;
                         case "Health":

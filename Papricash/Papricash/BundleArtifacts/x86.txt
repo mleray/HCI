@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Maud\Documents\GitHub\HCI\Papricash\Papricash\bin\x86\Release\Papricash_1.0.1.0_x86.appx
+ResourcePack=C:\Users\Maud\Documents\GitHub\HCI\Papricash\Papricash\bin\x86\Release\Papricash_1.0.1.0_language-en.appx

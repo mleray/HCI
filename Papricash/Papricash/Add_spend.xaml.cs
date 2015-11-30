@@ -60,7 +60,7 @@ namespace Papricash
 
         private void clickCat(string c)
         {
-            if (c == "Party")
+            if (c == "Parties")
             {
                 cat1.BorderBrush = new SolidColorBrush(Colors.Black);
                 cat2.BorderBrush = new SolidColorBrush(Colors.Transparent);
@@ -70,7 +70,7 @@ namespace Papricash
                 cat6.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat7.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 cat1.BorderThickness = new Thickness(3, 3, 3, 3);
-                currentCat = "Party";
+                currentCat = "Parties";
             } else if (c == "Health")
             {
                 cat2.BorderBrush = new SolidColorBrush(Colors.Black);
@@ -146,7 +146,7 @@ namespace Papricash
 
         private void cat1_click(object sender, RoutedEventArgs e)
         {
-            clickCat("Party");
+            clickCat("Parties");
         }
         private void cat2_click(object sender, RoutedEventArgs e)
         {

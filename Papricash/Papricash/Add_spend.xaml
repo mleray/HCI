@@ -50,7 +50,7 @@
                 <Button Width="100" Height="100" x:Name="cat7" Background="White" Click="cat7_click" Canvas.Left="100">
                     <Image Source="./Resources/travel.jpg" Stretch="Fill"/>
                 </Button>
-                <TextBlock Height="30" Text="Party" Width="100" TextAlignment="Center" Canvas.Top="100" FontSize="18.667"/>
+                <TextBlock Height="30" Text="Parties" Width="100" TextAlignment="Center" Canvas.Top="100" FontSize="18.667"/>
                 <TextBlock Height="30" Text="Travels" Width="100" TextAlignment="Center" Canvas.Top="100" Canvas.Left="100" FontSize="18.667"/>
                 <TextBlock Height="30" Text="Transport" Width="100" TextAlignment="Center" Canvas.Top="100" Canvas.Left="200" FontSize="18.667"/>
                 <TextBlock Height="30" Text="Hobbies" Width="100" TextAlignment="Center" Canvas.Top="100" Canvas.Left="300" FontSize="18.667"/>

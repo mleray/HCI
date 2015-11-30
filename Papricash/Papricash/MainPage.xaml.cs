@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -67,7 +68,7 @@ namespace Papricash
                 {
                     budgetLeft = budget;
                     localSettings.Values["budgetLeft"] = budget;
-                    thresh.Text = "";
+                    thresh.Text = " ";
                     thresh.Text += budgetLeft;
                 }
                 if (budgetLeft <= threshold)
@@ -107,7 +108,6 @@ namespace Papricash
 
         private async void settings_button_click(object sender, RoutedEventArgs e)
         {
-            var btn = sender as Button;
             var dialog = new ContentDialog()
             {
                 Title = "Settings",
@@ -189,7 +189,7 @@ namespace Papricash
                 you_are_text.Visibility = Visibility.Visible;
                 green_text.Visibility = Visibility.Visible;
                 add_button.IsEnabled = true;
-                thresh.Text += budgetLeft;
+                thresh.Text += " " + budgetLeft;
                 please.Visibility = Visibility.Collapsed;
             };
 
