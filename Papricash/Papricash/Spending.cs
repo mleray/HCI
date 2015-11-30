@@ -21,7 +21,7 @@ namespace Papricash
         public override string ToString()
         {
             string result = String.Empty;
-            result += "Date: " + Date.ToString() + "\n";
+            result += "Date: " + Date + "\n";
             result += "Amount: " + Amount + "\n";
             result += "Category: " + Cat + "\n";
             if (Comment != String.Empty)

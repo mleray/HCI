@@ -8,11 +8,12 @@
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel x:Name="title_panel" Margin="200,20,200,480">
-            <TextBlock x:Name="green_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="you_are_text" Text="GREEN" Visibility="Visible" FontWeight="Bold" FontSize="30" Foreground="#FF15B12B" />
-            <TextBlock x:Name="red_text" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="RED" Visibility="Collapsed" RelativePanel.Below="you_are_text" FontWeight="Bold" FontSize="30" Foreground="#FFE52606" />
+            <TextBlock x:Name="green_text" Visibility="Collapsed" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="you_are_text" Text="GREEN" FontWeight="Bold" FontSize="30" Foreground="#FF15B12B" />
+            <TextBlock x:Name="red_text" Visibility="Collapsed" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="RED" RelativePanel.Below="you_are_text" FontWeight="Bold" FontSize="30" Foreground="#FFE52606" />
             <TextBlock x:Name="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" Text="Welcome to Papricash" FontSize="40" />
-            <TextBlock x:Name="you_are_text" RelativePanel.Below="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="You are in the :" FontSize="30" />
-            <Image x:Name="logo" RelativePanel.AlignLeftWithPanel="True" Height="80" RelativePanel.AlignTopWithPanel="True" Width="70" Source="./Resources/papricash.jpg"/>
+            <TextBlock x:Name="you_are_text" Visibility="Collapsed" RelativePanel.Below="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="You are in the :" FontSize="30" />
+            <TextBlock x:Name="please" RelativePanel.Below="welcome_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Text="Please define the settings" FontSize="30" />
+            <Image x:Name="logo" RelativePanel.AlignLeftWithPanel="True" Height="80" RelativePanel.AlignTopWithPanel="True" Width="70" Source="./Resources/papricash.png"/>
         </RelativePanel>
         <RelativePanel x:Name="main_panel" Margin="80,200,80,100">
             <Button x:Name="trends_button" RelativePanel.AlignHorizontalCenterWithPanel="True" Background="White" Width="300" Height="300" RelativePanel.AlignVerticalCenterWithPanel="True"  Click="trends_button_Click">
@@ -30,10 +31,12 @@
             <Button x:Name="add_button" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Width="120" Height="120" Click="add_button_click" Background="White">
                 <Image Source="./Resources/add.jpg" Stretch="Fill"/>
             </Button>
-            <TextBlock x:Name="you_still" Visibility="Collapsed" RelativePanel.AlignBottomWithPanel="true" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="You still have:" FontSize="26.667"/>
-            <TextBlock x:Name="thresh" RelativePanel.AlignBottomWithPanel="true" RelativePanel.RightOf="you_still" FontSize="26.667"/>
-            <TextBlock x:Name="euro" Visibility="Collapsed" RelativePanel.AlignBottomWithPanel="true" RelativePanel.RightOf="thresh" Text="€" FontSize="26.667" />
-            <TextBlock x:Name="ft" Visibility="Collapsed" RelativePanel.AlignBottomWithPanel="true" RelativePanel.RightOf="thresh" Text="Ft" FontSize="26.667" />
+            <Canvas x:Name="canvas_left" RelativePanel.AlignBottomWithPanel="true" RelativePanel.AlignHorizontalCenterWithPanel="True" Visibility="Collapsed" Width="300">
+                <TextBlock x:Name="you_still" Text="You still have:" FontSize="26.667"/>
+                <TextBlock x:Name="thresh" Width="80" FontSize="26.667" Canvas.Left="160"/>
+                <TextBlock x:Name="euro" Text="€" FontSize="26.667" Canvas.Left="250" Visibility="Collapsed"/>
+                <TextBlock x:Name="ft" Text="Ft" FontSize="26.667" Canvas.Left="250" Visibility="Collapsed"/>
+            </Canvas>
         </RelativePanel>
     </Grid>
 </Page>

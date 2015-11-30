@@ -181,23 +181,32 @@ namespace Papricash
         private void add_click(object sender, RoutedEventArgs e)
         {
             int a;
-            string com;
-            if (amount_textBox.Text == "")
+            string com; 
+            if (amount_textBox.Text == "" && currentCat == "")
             {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
+                you_must_cat.Visibility = Visibility.Visible;
+            }
+            else if (amount_textBox.Text == "")
+            {
+                amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
+                you_must.Visibility = Visibility.Visible;
+                you_must_cat.Visibility = Visibility.Collapsed;
             }
             else if (currentCat == "")
             {
                 you_must_cat.Visibility = Visibility.Visible;
+                you_must.Visibility = Visibility.Collapsed;
             }
             else if (comment_textBox.Text == "Optional comment")
             {
                 a = Convert.ToInt32(amount_textBox.Text);
-                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.Date });
-                if (MainPage.budget != 0)
+                var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.Date.ToLocalTime() });
+                if (MainPage.budgetLeft != 0)
                 {
-                    MainPage.budget -= a;
+                    MainPage.budgetLeft -= a;
+                    MainPage.localSettings.Values["budgetLeft"] = MainPage.budgetLeft;
                 }
                 Frame.Navigate(typeof(MainPage));
             }
@@ -205,10 +214,11 @@ namespace Papricash
             {
                 a = Convert.ToInt32(amount_textBox.Text);
                 com = comment_textBox.Text;
-                var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = currentCat, Date = dp.Date.Date });
-                if (MainPage.budget != 0)
+                var add = MainPage.conn.Insert(new Spending() { Comment = com, Amount = a, Cat = currentCat, Date = dp.Date.Date.ToLocalTime() });
+                if (MainPage.budgetLeft != 0)
                 {
-                    MainPage.budget -= a;
+                    MainPage.budgetLeft -= a;
+                    MainPage.localSettings.Values["budgetLeft"] = MainPage.budgetLeft;
                 }
                 Frame.Navigate(typeof(MainPage));
             }

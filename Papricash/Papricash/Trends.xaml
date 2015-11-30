@@ -17,6 +17,7 @@
             <Charting:Chart x:Name="pie" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Width="450" Height="450">
                 <Charting:PieSeries Margin="0" IndependentValuePath="Cat" DependentValuePath="Amount" IsSelectionEnabled="False"/>
             </Charting:Chart>
+            <TextBlock Text="Spendings per category for the current month" RelativePanel.Below="pie" FontSize="26" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
         </RelativePanel>
     </Grid>
 </Page>

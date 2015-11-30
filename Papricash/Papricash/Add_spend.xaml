@@ -19,12 +19,12 @@
             </Button>
             <Canvas x:Name="empty2" Height="50" Width="100" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="welcome_text"/>
             <TextBlock x:Name="you_must_cat" FontStyle="Italic" Visibility="Collapsed" RelativePanel.Below="cat_panel" FontSize="20" TextAlignment="Left" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="You must pick a category!" Foreground="#FFE21818"/>
-            <DatePicker x:Name ="dp" Language="en-US" RelativePanel.RightOf="emptyLeft" RelativePanel.Above="empty"/>
+            <DatePicker x:Name ="dp" RelativePanel.RightOf="emptyLeft" RelativePanel.Above="empty"/>
             <Button x:Name="add_button" RelativePanel.LeftOf="emptyRight" Visibility="Collapsed" Content="Add spending" Height="70" Width="130" RelativePanel.AlignBottomWithPanel="True" Click="add_click"/>
             <TextBox x:Name="comment_textBox" RelativePanel.RightOf="emptyLeft" RelativePanel.AlignVerticalCenterWithPanel="True" Height="40" TextWrapping="Wrap" Text="Optional comment" FontStyle="Italic" Width="200" TextAlignment="Right" GotFocus="comment_textBox_GotFocus" LostFocus="comment_textBox_LostFocus"/>
             <TextBox x:Name="amount_textBox" FontSize="25" RelativePanel.RightOf="emptyLeft" RelativePanel.Above="comment_textBox" Height="40" TextWrapping="Wrap" Width="200" TextChanged="amount_changed" TextAlignment="Right"/>
-            <TextBlock x:Name="you_must" FontStyle="Italic" RelativePanel.Above="amount_textBox" FontSize="20" TextAlignment="Left" Visibility="Collapsed" RelativePanel.AlignLeftWithPanel="True" Text="You must enter a value!" Foreground="#FFE21818"/>
-            <TextBlock x:Name="euro" FontSize="30" TextAlignment="Left" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" €"/>
+            <TextBlock x:Name="you_must" RelativePanel.RightOf="emptyLeft" FontStyle="Italic" RelativePanel.Above="amount_textBox" FontSize="20" TextAlignment="Left" Visibility="Collapsed" Text="You must enter a value!" Foreground="#FFE21818"/>
+            <TextBlock x:Name="euro" Visibility="Collapsed" FontSize="30" TextAlignment="Left" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" €"/>
             <TextBlock x:Name="forint" FontSize="30" TextAlignment="Left" Visibility="Collapsed" RelativePanel.RightOf="amount_textBox" RelativePanel.Above="comment_textBox" Text=" HUF"/>
             <TextBlock x:Name="empty" Height="50" Width="100" TextAlignment="Left" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
             <Canvas x:Name="cat_panel" RelativePanel.Below="empty2" Width="700" Height="130" RelativePanel.AlignHorizontalCenterWithPanel="True">

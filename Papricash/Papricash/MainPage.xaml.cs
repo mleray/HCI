@@ -27,15 +27,30 @@ namespace Papricash
     {
         public static string path;
         public static SQLite.Net.SQLiteConnection conn;
+        public static int budgetLeft;
         public static int budget;
         public static int threshold;
         public static int currency;
+        public static Windows.Storage.ApplicationDataContainer localSettings;
 
         public MainPage()
         {
             this.InitializeComponent();
-            if (budget != 0)
+            localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            var bl = localSettings.Values["budgetLeft"];
+            var b = localSettings.Values["budget"];
+            var c = localSettings.Values["currency"];
+            var t = localSettings.Values["thresh"];
+            if (b != null && bl != null && c != null && t != null)
             {
+                please.Visibility = Visibility.Collapsed;
+                you_are_text.Visibility = Visibility.Visible;
+                add_button.IsEnabled = true;
+                currency = (int)c;
+                budget = (int)b;
+                budgetLeft = (int)bl;
+                threshold = (int)t;
+
                 if (currency == 1)
                 {
                     euro.Visibility = Visibility.Visible;
@@ -46,17 +61,33 @@ namespace Papricash
                     ft.Visibility = Visibility.Visible;
                     euro.Visibility = Visibility.Collapsed;
                 }
-                thresh.Text += " " + budget;
-                you_still.Visibility = Visibility.Visible;
-                if (budget <= threshold)
+                thresh.Text += " " + budgetLeft;
+                canvas_left.Visibility = Visibility.Visible;
+                if (DateTime.Today.Day == 1)
+                {
+                    budgetLeft = budget;
+                    localSettings.Values["budgetLeft"] = budget;
+                    thresh.Text = "";
+                    thresh.Text += budgetLeft;
+                }
+                if (budgetLeft <= threshold)
                 {
                     green_text.Visibility = Visibility.Collapsed;
                     red_text.Visibility = Visibility.Visible;
-                } else
+                }
+                else
                 {
                     red_text.Visibility = Visibility.Collapsed;
                     green_text.Visibility = Visibility.Visible;
                 }
+            } else
+            {
+                you_are_text.Visibility = Visibility.Collapsed;
+                green_text.Visibility = Visibility.Collapsed;
+                red_text.Visibility = Visibility.Collapsed;
+                canvas_left.Visibility = Visibility.Collapsed;
+                please.Visibility = Visibility.Visible;
+                add_button.IsEnabled = false;
             }
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db_spend");
@@ -88,7 +119,7 @@ namespace Papricash
 
             panel.Children.Add(new TextBlock
             {
-                Text = "Please choose your settings for Papricash:",
+                Text = "Select the currency you want to use:",
                 TextWrapping = TextWrapping.Wrap,
             });
 
@@ -105,7 +136,7 @@ namespace Papricash
 
             var text = new TextBlock
             {
-                Text = "Budget:"
+                Text = "Specify a monthly budget:"
             };
 
             var budget = new TextBox
@@ -114,7 +145,7 @@ namespace Papricash
             };
             var text2 = new TextBlock
             {
-                Text = "Threshold:"
+                Text = "Specify an alert threshold:"
             };
 
             var threshold = new TextBox
@@ -134,22 +165,32 @@ namespace Papricash
             dialog.PrimaryButtonText = "OK";
             dialog.PrimaryButtonClick += delegate
             {
+                MainPage.budgetLeft = Convert.ToInt32(budget.Text);
                 MainPage.budget = Convert.ToInt32(budget.Text);
                 MainPage.threshold = Convert.ToInt32(threshold.Text);
+                localSettings.Values["budget"] = Convert.ToInt32(budget.Text);
+                localSettings.Values["budgetLeft"] = Convert.ToInt32(budget.Text);
+                localSettings.Values["thresh"] = Convert.ToInt32(threshold.Text);
                 if (cbEuro.IsChecked == true)
                 {
                     MainPage.currency = 1;
+                    localSettings.Values["currency"] = 1;
                     euro.Visibility = Visibility.Visible;
                     ft.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     MainPage.currency = 0;
+                    localSettings.Values["currency"] = 0;
                     ft.Visibility = Visibility.Visible;
                     euro.Visibility = Visibility.Collapsed;
                 }
-                you_still.Visibility = Visibility.Visible;
-                thresh.Text += " " + budget.Text;
+                canvas_left.Visibility = Visibility.Visible;
+                you_are_text.Visibility = Visibility.Visible;
+                green_text.Visibility = Visibility.Visible;
+                add_button.IsEnabled = true;
+                thresh.Text += budgetLeft;
+                please.Visibility = Visibility.Collapsed;
             };
 
             dialog.SecondaryButtonText = "Cancel";

@@ -40,35 +40,38 @@ namespace Papricash
             List<Spending> lsPie = new List<Spending>();
             string[] tabCat = { "Party", "Health", "Shopping", "Grocery", "Hobbies", "Transport", "Travel" };
             int[] tabAmount = { 0, 0, 0, 0, 0, 0, 0 };
-            var query = MainPage.conn.Query<Spending>("Select Cat, Date, Amount from Spending order by Date");
+            var query = MainPage.conn.Query<Spending>("SELECT Cat, Date, Amount FROM Spending");
             foreach (Spending s in query)
             {
-                switch (s.Cat)
+                if (s.Date.Month == DateTime.Today.Month && s.Date.Year == DateTime.Today.Year)
                 {
-                    case "Party":
-                        tabAmount[0] += s.Amount;
-                        break;
-                    case "Health":
-                        tabAmount[1] += s.Amount;
-                        break;
-                    case "Shopping":
-                        tabAmount[2] += s.Amount;
-                        break;
-                    case "Grocery":
-                        tabAmount[3] += s.Amount;
-                        break;
-                    case "Hobbies":
-                        tabAmount[4] += s.Amount;
-                        break;
-                    case "Transport":
-                        tabAmount[5] += s.Amount;
-                        break;
-                    case "Travel":
-                        tabAmount[6] += s.Amount;
-                        break;
-                    default:
-                        Debug.WriteLine("Default case");
-                        break;
+                    switch (s.Cat)
+                    {
+                        case "Party":
+                            tabAmount[0] += s.Amount;
+                            break;
+                        case "Health":
+                            tabAmount[1] += s.Amount;
+                            break;
+                        case "Shopping":
+                            tabAmount[2] += s.Amount;
+                            break;
+                        case "Grocery":
+                            tabAmount[3] += s.Amount;
+                            break;
+                        case "Hobbies":
+                            tabAmount[4] += s.Amount;
+                            break;
+                        case "Transport":
+                            tabAmount[5] += s.Amount;
+                            break;
+                        case "Travel":
+                            tabAmount[6] += s.Amount;
+                            break;
+                        default:
+                            Debug.WriteLine("Default case");
+                            break;
+                    }
                 }
             }
             for (int i=0; i < 7; i++)
