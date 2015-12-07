@@ -58,6 +58,8 @@ namespace Papricash
         {
             delete_button.Visibility = Visibility.Visible;
             modify_button.Visibility = Visibility.Visible;
+            modify.Visibility = Visibility.Visible;
+            delete.Visibility = Visibility.Visible;
         }
 
         private void delete_button_Click(object sender, RoutedEventArgs e)

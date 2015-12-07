@@ -13,8 +13,14 @@
                 <SymbolIcon Symbol="Back" Height="40" Width="80"/>
             </Button>
             <TextBlock x:Name="title_text" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Text="History" FontSize="40"/>
-            <AppBarButton x:Name="delete_button" Width="120" Height="90" Icon="Delete" Label="Delete" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.LeftOf="emptyRight" Visibility="Collapsed" Background="#FFEE370F" Click="delete_button_Click"/>
-            <AppBarButton x:Name="modify_button" RelativePanel.LeftOf="emptyRight" RelativePanel.Below="delete_button" Width="120" Visibility="Collapsed" Height="90" Icon="Edit" Label="Modify" Background="#FF0EB6DF" Click="modify_button_Click"/>
+            <Button x:Name="delete_button" Visibility="Collapsed" Width="100" Height="100" Background="White"  RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.LeftOf="emptyRight" Click="delete_button_Click">
+                <Image Source="./Resources/delete.jpg" Stretch="Fill"/>
+            </Button>
+            <TextBlock x:Name="delete" Visibility="Collapsed" Width="100" RelativePanel.LeftOf="emptyRight" RelativePanel.Below="delete_button" Text="Delete" FontSize="18.667" TextAlignment="Center"/>
+            <Button x:Name="modify_button" Visibility="Collapsed" Background="White" RelativePanel.LeftOf="emptyRight" RelativePanel.Below="delete" Width="100" Height="100"  Click="modify_button_Click">
+                <Image Source="./Resources/modify.jpg" Stretch="Fill"/>
+            </Button>
+            <TextBlock x:Name="modify" Width="100" Visibility="Collapsed" RelativePanel.LeftOf="emptyRight" RelativePanel.Below="modify_button" Text="Modify" FontSize="18.667" TextAlignment="Center"/>
             <ListView x:Name="listSpend" BorderBrush="Black" BorderThickness="1,1,1,1" Height="550" Width="500" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="emptyLeft" SelectionChanged="listSpend_SelectionChanged"/>
             <Canvas x:Name="emptyLeft" Width="100" Height="100" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
             <Canvas x:Name="emptyRight" Width="100" Height="100" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>

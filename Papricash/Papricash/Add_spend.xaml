@@ -70,7 +70,7 @@
                 <Button x:Name="nb2" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="2" Canvas.Left="80" Canvas.Top="120" Click="nb2_Click"/>
                 <Button x:Name="nb3" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="3" Canvas.Left="160" Canvas.Top="120" Click="nb3_Click"/>
                 <Button x:Name="nb0" BorderBrush="Black" BorderThickness="1" Height="60" Width="80" Content="0" Canvas.Top="180" Click="nb0_Click"/>
-                <Button x:Name="cancel" BorderBrush="Black" BorderThickness="1" Height="60" Width="160" Content="Cancel" Canvas.Left="80" Canvas.Top="180" Click="cancel_Click"/>
+                <Button x:Name="cancel" BorderBrush="Black" BorderThickness="1" Height="60" Width="160" Content="Clean" Canvas.Left="80" Canvas.Top="180" Click="cancel_Click"/>
             </Canvas>
         </RelativePanel>
     </Grid>
