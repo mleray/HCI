@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Papricash
 {
     /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
+    /// Main page of Papricash, featuring all functionalities
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -31,18 +31,22 @@ namespace Papricash
         public static int budgetLeft;
         public static int budget;
         public static int threshold;
-        public static int currency;
+        public static int currency; // 1 for euros, 0 for forints
         public static Windows.Storage.ApplicationDataContainer localSettings;
+
+        /// <summary>
+        /// Initialization of the page, empty constructor
+        /// </summary>
 
         public MainPage()
         {
             this.InitializeComponent();
-            localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings = Windows.Storage.ApplicationData.Current.LocalSettings; //creates local settings for the application
             var bl = localSettings.Values["budgetLeft"];
             var b = localSettings.Values["budget"];
             var c = localSettings.Values["currency"];
             var t = localSettings.Values["thresh"];
-            if (b != null && bl != null && c != null && t != null)
+            if (b != null && bl != null && c != null && t != null) //checks if settings are initialized
             {
                 please.Visibility = Visibility.Collapsed;
                 you_are_text.Visibility = Visibility.Visible;
@@ -52,36 +56,36 @@ namespace Papricash
                 budgetLeft = (int)bl;
                 threshold = (int)t;
 
-                if (currency == 1)
+                if (currency == 1) // it means it is in euros
                 {
                     euro.Visibility = Visibility.Visible;
                     ft.Visibility = Visibility.Collapsed;
                 }
-                else
+                else // it means it is in forints
                 {
                     ft.Visibility = Visibility.Visible;
                     euro.Visibility = Visibility.Collapsed;
                 }
                 thresh.Text += " " + budgetLeft;
                 canvas_left.Visibility = Visibility.Visible;
-                if (DateTime.Today.Day == 1)
+                if (DateTime.Today.Day == 1) //means that we need to reinitialize the budget
                 {
                     budgetLeft = budget;
                     localSettings.Values["budgetLeft"] = budget;
                     thresh.Text = " ";
                     thresh.Text += budgetLeft;
                 }
-                if (budgetLeft <= threshold)
+                if (budgetLeft <= threshold) // you are in the red
                 {
                     green_text.Visibility = Visibility.Collapsed;
                     red_text.Visibility = Visibility.Visible;
                 }
-                else
+                else // you are in the green
                 {
                     red_text.Visibility = Visibility.Collapsed;
                     green_text.Visibility = Visibility.Visible;
                 }
-            } else
+            } else // settings must be initialized
             {
                 you_are_text.Visibility = Visibility.Collapsed;
                 green_text.Visibility = Visibility.Collapsed;
@@ -90,28 +94,40 @@ namespace Papricash
                 please.Visibility = Visibility.Visible;
                 add_button.IsEnabled = false;
             }
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db_spend");
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed; // no back button
+            path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db_spend"); // create database
             conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-            conn.CreateTable<Spending>();
+            conn.CreateTable<Spending>(); // create table for spendings
         }
-
+        /// <summary>
+        /// Action when return"history" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void history_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(History));
         }
-
+        /// <summary>
+        /// Action when "add spending" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void add_button_click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Add_spend));
+            this.Frame.Navigate(typeof(Add_spend)); 
         }
-
+        /// <summary>
+        /// Action when "settings" button is pressed, opens a content dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void settings_button_click(object sender, RoutedEventArgs e)
         {
             var dialog = new ContentDialog()
             {
                 Title = "Settings",
-                MaxWidth = this.ActualWidth // Required for Mobile!
+                MaxWidth = this.ActualWidth // Required for Mobile
             };
 
             // Setup Content
@@ -125,10 +141,9 @@ namespace Papricash
 
             var cbEuro = new CheckBox
             {
-                Content = "Euros",
-                IsChecked = true
+                Content = "Euros"
             };
-
+            
             var cbFt = new CheckBox
             {
                 Content = "Forints"
@@ -160,8 +175,7 @@ namespace Papricash
             panel.Children.Add(text2);
             panel.Children.Add(threshold);
             dialog.Content = panel;
-
-            // Add Buttons
+            
             dialog.PrimaryButtonText = "OK";
             dialog.PrimaryButtonClick += delegate
             {
@@ -171,20 +185,21 @@ namespace Papricash
                 localSettings.Values["budget"] = Convert.ToInt32(budget.Text);
                 localSettings.Values["budgetLeft"] = Convert.ToInt32(budget.Text);
                 localSettings.Values["thresh"] = Convert.ToInt32(threshold.Text);
-                if (cbEuro.IsChecked == true)
+                if (cbEuro.IsChecked == true) // selected currency is euro
                 {
                     MainPage.currency = 1;
                     localSettings.Values["currency"] = 1;
                     euro.Visibility = Visibility.Visible;
                     ft.Visibility = Visibility.Collapsed;
                 }
-                else
+                else // selected currency is forint
                 {
                     MainPage.currency = 0;
                     localSettings.Values["currency"] = 0;
                     ft.Visibility = Visibility.Visible;
                     euro.Visibility = Visibility.Collapsed;
                 }
+                // update main page
                 canvas_left.Visibility = Visibility.Visible;
                 you_are_text.Visibility = Visibility.Visible;
                 green_text.Visibility = Visibility.Visible;
@@ -196,10 +211,11 @@ namespace Papricash
             dialog.SecondaryButtonText = "Cancel";
             dialog.SecondaryButtonClick += delegate { };
 
-            // Show Dialog
             var result = await dialog.ShowAsync();
         }
-
+        /// <summary>
+        /// Action when "charts" button is pressed
+        /// </summary>
         private void trends_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Trends));

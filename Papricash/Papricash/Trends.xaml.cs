@@ -20,21 +20,30 @@ using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 namespace Papricash
 {
     /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
+    /// Page used to display the pie chart
     /// </summary>
     public sealed partial class Trends : Page
     {
+        /// <summary>
+        /// Page initialization, empty constructor
+        /// </summary>
         public Trends()
         {
             this.InitializeComponent();
             addDataToChart();
         }
-
+        /// <summary>
+        /// Action when return button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void return_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
-
+        /// <summary>
+        /// Fills the pie chart with the spendings of the current month
+        /// </summary>
         private void addDataToChart()
         {
             List<Spending> lsPie = new List<Spending>();
@@ -43,7 +52,8 @@ namespace Papricash
             var query = MainPage.conn.Query<Spending>("SELECT Cat, Date, Amount FROM Spending");
             foreach (Spending s in query)
             {
-                if (s.Date.Month == DateTime.Today.Month && s.Date.Year == DateTime.Today.Year)
+                if (s.Date.Month == DateTime.Today.Month && s.Date.Year == DateTime.Today.Year) 
+                    // checks if the spending was during the current month and the current year
                 {
                     switch (s.Cat)
                     {

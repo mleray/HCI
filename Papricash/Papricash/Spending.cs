@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Papricash
 {
-    public class Spending
+    /// <summary>
+    /// Class used to define the spendings and their attributes
+    /// </summary>
+    public class Spending // Table for database
     {
         [PrimaryKey, AutoIncrement]
 

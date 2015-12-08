@@ -155,7 +155,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="Spending.cs" />
     <Compile Include="Trends.xaml.cs">
       <DependentUpon>Trends.xaml</DependentUpon>

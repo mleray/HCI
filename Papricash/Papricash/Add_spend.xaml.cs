@@ -17,15 +17,19 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Pour plus d'informations sur le modèle d'élément Page vierge, voir la page http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Papricash
 {
+    /// <summary>
+    /// Page used to add spendings
+    /// </summary>
     public sealed partial class Add_spend : Page
     {
         private string currentCat { get; set; }
         public static Spending spend;
 
+        /// <summary>
+        /// Initialization of the page, empty constructor
+        /// </summary>
         public Add_spend()
         {
             this.InitializeComponent();
@@ -53,11 +57,19 @@ namespace Papricash
             }
         }
 
+        /// <summary>
+        /// Action when return button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void return_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
-
+        /// <summary>
+        /// Actions when a category is selected
+        /// </summary>
+        /// <param name="c">Represents the category</param>
         private void clickCat(string c)
         {
             if (c == "Parties")
@@ -143,63 +155,107 @@ namespace Papricash
                 Debug.WriteLine("This category does not exist");
             }
         }
-
+        /// <summary>
+        /// Category 1 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat1_click(object sender, RoutedEventArgs e)
         {
             clickCat("Parties");
         }
+
+        /// <summary>
+        /// Category 2 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat2_click(object sender, RoutedEventArgs e)
         {
             clickCat("Health");
         }
+        /// <summary>
+        /// Category 3 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat3_click(object sender, RoutedEventArgs e)
         {
             clickCat("Shopping");
         }
+
+        /// <summary>
+        /// Category 4 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat4_click(object sender, RoutedEventArgs e)
         {
             clickCat("Grocery");
         }
+        /// <summary>
+        /// Category 5 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat5_click(object sender, RoutedEventArgs e)
         {
             clickCat("Hobbies");
         }
+        /// <summary>
+        /// Category 6 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat6_click(object sender, RoutedEventArgs e)
         {
             clickCat("Transport");
         }
+        /// <summary>
+        /// Category 7 is picked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cat7_click(object sender, RoutedEventArgs e)
         {
             clickCat("Travel");
         }
-
+        /// <summary>
+        /// Actions when user changes the amount
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void amount_changed(object sender, TextChangedEventArgs e)
         {
             add_button.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Actions when add button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void add_click(object sender, RoutedEventArgs e)
         {
             int a;
             string com; 
-            if (amount_textBox.Text == "" && currentCat == "")
+            if (amount_textBox.Text == "" && currentCat == "") // if no amount and no category specified
             {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
                 you_must_cat.Visibility = Visibility.Visible;
             }
-            else if (amount_textBox.Text == "")
+            else if (amount_textBox.Text == "") // if no amount specified
             {
                 amount_textBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 you_must.Visibility = Visibility.Visible;
                 you_must_cat.Visibility = Visibility.Collapsed;
             }
-            else if (currentCat == "")
+            else if (currentCat == "") // if no category specified
             {
                 you_must_cat.Visibility = Visibility.Visible;
                 you_must.Visibility = Visibility.Collapsed;
             }
-            else if (comment_textBox.Text == "Optional comment")
+            else if (comment_textBox.Text == "Optional comment") // if no comment specified
             {
                 a = Convert.ToInt32(amount_textBox.Text);
                 var add = MainPage.conn.Insert(new Spending() { Comment = String.Empty, Amount = a, Cat = currentCat, Date = dp.Date.Date.ToLocalTime() });
@@ -210,7 +266,7 @@ namespace Papricash
                 }
                 Frame.Navigate(typeof(MainPage));
             }
-            else
+            else // if there is a comment
             {
                 a = Convert.ToInt32(amount_textBox.Text);
                 com = comment_textBox.Text;
@@ -224,66 +280,119 @@ namespace Papricash
             }
         }
 
+        /// <summary>
+        /// If focus on comment text box, put value to empty
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comment_textBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (comment_textBox.Text == "Optional comment") comment_textBox.Text = "";
         }
-
+        /// <summary>
+        /// If comment text box loses focus without input then put back "optional comment"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comment_textBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (comment_textBox.Text == "") comment_textBox.Text = "Optional comment";
         }
-
+        /// <summary>
+        /// Keyboard: touch "1"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb1_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "1";
         }
-
+        /// <summary>
+        /// Keyboard: touch "2"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb2_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "2";
         }
-
+        /// <summary>
+        /// Keyboard: touch "7"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb7_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "7";
         }
-
+        /// <summary>
+        /// Keyboard: touch "8"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb8_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "8";
         }
-
+        /// <summary>
+        /// Keyboard: touch "9"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb9_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "9";
         }
-
+        /// <summary>
+        /// Keyboard: touch "4"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb4_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "4";
         }
-
+        /// <summary>
+        /// Keyboard: touch "5"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb5_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "5";
         }
-
+        /// <summary>
+        /// Keyboard: touch "6"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb6_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "6";
         }
-
+        /// <summary>
+        /// Keyboard: touch "3"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb3_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "3";
         }
-
+        /// <summary>
+        /// Keyboard: touch "0"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nb0_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text += "0";
         }
-
+        /// <summary>
+        /// Keyboard: touch "Clean"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
             amount_textBox.Text = "";

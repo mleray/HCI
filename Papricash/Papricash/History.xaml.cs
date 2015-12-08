@@ -20,29 +20,22 @@ using Windows.UI.Xaml.Navigation;
 namespace Papricash
 {
     /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
+    /// Page used to display the history of spendings, and modify/delete some if needed
     /// </summary>
     public sealed partial class History : Page
     {
         List<Spending> ls;
-
+        /// <summary>
+        /// Initialization of the page, empty constructor
+        /// </summary>
         public History()
         {
             this.InitializeComponent();
             addDataToList();
         }
-
-        private void Show_click(object sender, RoutedEventArgs e)
-        {
-            var show = MainPage.conn.Table<Spending>();
-            string result = String.Empty;
-            foreach (var item in show)
-                {
-                    result = item.ToString();
-                    Debug.WriteLine(result);
-                }; 
-        }
-
+        /// <summary>
+        /// Fills the list with the spendings
+        /// </summary>
         private void addDataToList()
         {
             ls = new List<Spending>();
@@ -53,7 +46,11 @@ namespace Papricash
             }
             listSpend.ItemsSource = ls;
         }
-
+        /// <summary>
+        /// Makes buttons "modify" and "delete" visible if a spending is selected in the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listSpend_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             delete_button.Visibility = Visibility.Visible;
@@ -61,7 +58,11 @@ namespace Papricash
             modify.Visibility = Visibility.Visible;
             delete.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Action when "delete" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void delete_button_Click(object sender, RoutedEventArgs e)
         {
             Object o = listSpend.SelectedValue;
@@ -71,7 +72,11 @@ namespace Papricash
             MainPage.localSettings.Values["budgetLeft"] = MainPage.budgetLeft;
             addDataToList();
         }
-
+        /// <summary>
+        /// Action when "modify" button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modify_button_Click(object sender, RoutedEventArgs e)
         {
             Object o = listSpend.SelectedValue;
@@ -81,7 +86,11 @@ namespace Papricash
             MainPage.localSettings.Values["budgetLeft"] = MainPage.budgetLeft;
             this.Frame.Navigate(typeof(Add_spend), Add_spend.spend = s);
         }
-
+        /// <summary>
+        /// Action when return button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void return_button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
