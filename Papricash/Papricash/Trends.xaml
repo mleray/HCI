@@ -10,7 +10,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel x:Name="main_panel" Margin="20,20,20,20">
-            <TextBlock x:Name="trends_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="40" Text="Trends" TextAlignment="Center"/>
+            <TextBlock x:Name="trends_text" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignTopWithPanel="True" FontSize="40" Text="Charts" TextAlignment="Center"/>
             <Button Height="50" Width="100" Click="return_button_Click">
                 <SymbolIcon Symbol="Back" Height="40" Width="80"/>
             </Button>

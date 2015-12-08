@@ -22,7 +22,7 @@
             <TextBlock x:Name="history" Height="30" Width="120" Text="History" RelativePanel.Below="history_button" RelativePanel.AlignLeftWithPanel="True" FontSize="18.667" TextAlignment="Center"/>
             <TextBlock x:Name="settings" Height="30" Width="120" Text="Settings" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" FontSize="18.667" TextAlignment="Center"/>
             <TextBlock x:Name="add" Height="30" Width="120" Text="Add spending" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="add_button" FontSize="18.667" TextAlignment="Center"/>
-            <TextBlock x:Name="trends" Height="30" Width="120" Text="Trends" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="trends_button" FontSize="18.667" TextAlignment="Center"/>
+            <TextBlock x:Name="trends" Height="30" Width="120" Text="Charts" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="trends_button" FontSize="18.667" TextAlignment="Center"/>
             <Button x:Name="history_button" HorizontalAlignment="Left" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Width="120" Height="120" Click="history_button_Click" Background="White">
                 <Image Source="./Resources/history.jpg" Stretch="Fill"/>
             </Button>
